@@ -40,3 +40,6 @@ build/
 # Python bytecode
 __pycache__/
 *.pyc
+
+# Local messenger deploy output
+.messenger-deploy-result.txt
