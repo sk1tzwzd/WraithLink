@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs - FAQ</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="../index.html#features">Features</a>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Start</div>
+        <a href="index.html">Overview</a>
+        <a href="install.html">Install</a>
+        <a href="devices.html">Devices</a>
+        <div class="group">Features</div>
+        <a href="features.html">Feature tour</a>
+        <a href="duress.html">Duress &amp; WraithVault</a>
+        <a href="network-privacy.html">Network privacy</a>
+        <a href="chat.html">WraithLink messenger</a>
+        <a href="x47-pairing.html">X47 pairing</a>
+        <div class="group">Reference</div>
+        <a href="usage.html">Daily use</a>
+        <a href="security.html">Security model</a>
+        <a class="active" href="faq.html">FAQ</a>
+      </aside>
+
+      <article>
+        <h1>Frequently asked questions</h1>
+
+        <h2>Is WraithLink GrapheneOS?</h2>
+        <p>No. WraithLink is an independent build derived from the GrapheneOS and AOSP open-source
+          projects. It is not affiliated with, endorsed by, or supported by GrapheneOS or Google. It
+          keeps their security foundations and adds a coercion-resistance layer on top, and it
+          preserves the upstream attribution their licenses require.</p>
+
+        <h2>Why only Pixel phones?</h2>
+        <p>WraithLink's guarantees depend on a bootloader that can be relocked with a custom key, a
+          secure element that can genuinely destroy keys, and prompt firmware updates. In practice
+          only Pixels provide all three. Running on hardware without them would make the duress feature
+          untrustworthy. See <a href="devices.html">Devices</a>.</p>
+
+        <h2>Is there a decoy PIN in the lean release?</h2>
+        <p>Not in published lean images. Milestone 2 adds a separate decoy PIN that unlocks the
+          everyday phone while silently destroying WraithVault — it does <em>not</em> replace the
+          GrapheneOS panic wipe. Until a decoy build passes hardware QA, use panic wipe or keep
+          sensitive data off the phone. See <a href="duress.html">Duress &amp; WraithVault</a>.</p>
+
+        <h2>Can forensics tell WraithVault exists?</h2>
+        <p>Yes. It is a normal Android secondary user profile. v1 does not hide it from the UI or from
+          labs. Treat it as a separate workspace you back up, not as deniable storage.</p>
+
+        <h2>Is it a "blockchain" messenger?</h2>
+        <p>No. Messages never touch a blockchain. The messenger is peer-to-peer over Tor with
+          disappearing messages and mandatory verification. Optional identity anchoring is not part of
+          v1. See <a href="chat.html">the messenger docs</a>.</p>
+
+        <h2>Will my banking / Play-store apps work?</h2>
+        <p>Sandboxed Google Play is offered in the setup wizard and runs like a normal app with no
+          special privileges, so most Play-store apps work. Some apps that demand strict hardware
+          attestation may behave differently; WraithLink keeps attestation intact, which helps.</p>
+
+        <h2>What happens if I lose my WraithVault backup?</h2>
+        <p>If the profile is wiped (decoy or panic) and you have no backup, that data is gone. On
+          decoy builds Setup refuses to arm a decoy PIN until you confirm an off-phone backup.</p>
+
+        <h2>Do I need the X47 desktop?</h2>
+        <p>No. It's an optional companion for remote tooling and automatic vault backups. Without it,
+          back up to an encrypted USB-C drive instead.</p>
+
+        <h2>Can I use my own DNS or VPN?</h2>
+        <p>Yes. Setup offers Mullvad DoT in one tap; Private DNS accepts any DNS-over-TLS provider.
+          Install any VPN (including Mullvad) from F-Droid or elsewhere.</p>
+
+        <h2>How do updates work?</h2>
+        <p>WraithLink pulls signed updates from its own server and installs them in the background with
+          the same seamless A/B mechanism as the base system. You never sideload updates by hand.</p>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    WraithLink - derived from GrapheneOS and AOSP, not affiliated with either.
+    &middot; <a href="../index.html">Home</a> &middot; <a href="../install/index.html">Install</a>
+  </footer>
+</body>
+</html>

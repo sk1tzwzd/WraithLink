@@ -1,0 +1,74 @@
+{
+  "$comment": "WraithLink bundled/offered apps. v1 lean ship: preinstall F-Droid (+ Chat when staged). Orbot/Tor Browser/Mullvad install from F-Droid. 'firstrun' = offered, NOT shipped (licensing).",
+  "store": {
+    "name": "Apps",
+    "package": "app.grapheneos.apps",
+    "base": "GrapheneOS Apps (packages/apps/Apps)",
+    "repo_url": "upstream (apps.grapheneos.org) unless WL_APPS_REPO_HOST is set",
+    "notes": "Do not rewrite to apps.${WL_DOMAIN} until that host serves a real repo."
+  },
+  "apps": [
+    {
+      "name": "F-Droid",
+      "package": "org.fdroid.fdroid",
+      "install": "preinstall",
+      "license": "GPLv3",
+      "url": "https://f-droid.org/F-Droid.apk",
+      "artifact": "FDroid.apk",
+      "cert_sha256": "43238d512c1e5eb2d6569f4a3afbf5523418b82e0a3ed1552770abb9a9c9ccab",
+      "redistributable": true
+    },
+    {
+      "name": "Orbot",
+      "package": "org.torproject.android",
+      "install": "fdroid",
+      "license": "BSD-3-Clause / FOSS",
+      "redistributable": true,
+      "notes": "v1: install from F-Droid. Not preinstalled."
+    },
+    {
+      "name": "TorBrowser",
+      "package": "org.torproject.torbrowser",
+      "install": "fdroid",
+      "license": "MPL-2.0 / Tor",
+      "redistributable": true,
+      "notes": "v1: install from F-Droid. Not preinstalled."
+    },
+    {
+      "name": "Mullvad",
+      "package": "net.mullvad.mullvadvpn",
+      "install": "fdroid",
+      "license": "GPLv3",
+      "redistributable": true,
+      "notes": "v1: install from F-Droid. Setup still offers Mullvad DoT one-tap."
+    },
+    {
+      "name": "Sandboxed Google Play",
+      "package": "com.google.android.gms",
+      "install": "firstrun",
+      "license": "proprietary (Google)",
+      "source": "offered via Apps / Setup, downloaded from Google at user request",
+      "redistributable": false,
+      "notes": "NOT shipped in the image."
+    },
+    {
+      "name": "WraithLink",
+      "display_name": "WraithLink",
+      "package": "net.wraithlink.chat",
+      "install": "preinstall",
+      "license": "Apache-2.0",
+      "source": "https://github.com/sk1tzwzd/WraithLink-Messenger",
+      "redistributable": true,
+      "notes": "Messenger: E2EE P2P over Tor. Built from sibling repo (WL_CHAT_SRC)."
+    },
+    {
+      "name": "WraithLink Setup",
+      "package": "net.wraithlink.setup",
+      "install": "in-tree",
+      "license": "Apache-2.0 (this repo)",
+      "source": "packages/apps/WraithLinkSetup",
+      "redistributable": true,
+      "notes": "Guided first-boot hardening wizard."
+    }
+  ]
+}

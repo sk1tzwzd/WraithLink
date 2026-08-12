@@ -1,0 +1,80 @@
+# WraithLink edge configuration for Caddy. Automatic HTTPS via Let's Encrypt.
+# Rendered by scripts/07-deploy-site.sh (substitutes @@WL_DOMAIN@@ / @@WL_EMAIL@@).
+#
+# Security posture: Caddy only ever serves the three STATIC web roots below. The
+# source tree and keys/ live in the builder's home dir, never under /srv, so they
+# are unreachable over HTTP. Firewall is limited to 80/443 + SSH by the deploy
+# script.
+
+{
+    email @@WL_EMAIL@@
+    # Uncomment to use the Let's Encrypt staging CA while testing DNS/certs:
+    # acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+# ---- Marketing site + web installer + docs ----
+# Also exposes /releases and /ota under www so the installer works before
+# subdomain DNS (releases./ota.) is pointed at this host.
+@@WL_DOMAIN@@, www.@@WL_DOMAIN@@ {
+    encode zstd gzip
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "no-referrer"
+        X-Frame-Options "DENY"
+        Permissions-Policy "usb=(self)"
+        # Tight CSP that still allows the self-hosted WebUSB installer module and
+        # its fetch of factory images / release metadata from our own host.
+        Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self'; connect-src 'self' https://www.@@WL_DOMAIN@@ https://releases.@@WL_DOMAIN@@ https://ota.@@WL_DOMAIN@@; base-uri 'none'; frame-ancestors 'none'; object-src 'none'"
+    }
+
+    handle_path /releases/* {
+        root * /srv/wraithlink-releases
+        file_server browse
+        header Access-Control-Allow-Origin "https://www.@@WL_DOMAIN@@"
+    }
+
+    handle_path /ota/* {
+        root * /srv/wraithlink-ota
+        file_server browse
+    }
+
+    handle {
+        root * /srv/wraithlink-www
+        try_files {path} {path}/index.html /404.html
+        file_server
+    }
+}
+
+# ---- OTA update server (WraithLink Updater polls this; baked in at rebrand) ----
+ota.@@WL_DOMAIN@@ {
+    root * /srv/wraithlink-ota
+    encode gzip
+    file_server browse
+    header {
+        Strict-Transport-Security "max-age=31536000"
+        X-Content-Type-Options "nosniff"
+        Cache-Control "public, max-age=300"
+    }
+}
+
+# ---- Factory images for the web installer (large signed zips) ----
+releases.@@WL_DOMAIN@@ {
+    root * /srv/wraithlink-releases
+    encode gzip
+    file_server browse
+    header {
+        Strict-Transport-Security "max-age=31536000"
+        X-Content-Type-Options "nosniff"
+        Access-Control-Allow-Origin "https://@@WL_DOMAIN@@"
+    }
+}
+
+# ---- WraithLink Store app repo (F-Droid-style; optional) ----
+apps.@@WL_DOMAIN@@ {
+    root * /srv/wraithlink-apps
+    encode gzip
+    file_server browse
+    header X-Content-Type-Options "nosniff"
+}

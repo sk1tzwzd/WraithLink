@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs - Network privacy</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="../index.html#features">Features</a>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Start</div>
+        <a href="index.html">Overview</a>
+        <a href="install.html">Install</a>
+        <a href="devices.html">Devices</a>
+        <div class="group">Features</div>
+        <a href="features.html">Feature tour</a>
+        <a href="duress.html">Duress &amp; WraithVault</a>
+        <a class="active" href="network-privacy.html">Network privacy</a>
+        <a href="chat.html">WraithLink messenger</a>
+        <a href="x47-pairing.html">X47 pairing</a>
+        <div class="group">Reference</div>
+        <a href="usage.html">Daily use</a>
+        <a href="security.html">Security model</a>
+        <a href="faq.html">FAQ</a>
+      </aside>
+
+      <article>
+        <h1>Network privacy</h1>
+        <p>What v1 actually configures, versus what you install yourself.</p>
+
+        <h2>Encrypted DNS</h2>
+        <p>WraithLink Setup offers one-tap DNS-over-TLS to Mullvad (<code>dns.mullvad.net</code>).
+          It is <strong>not</strong> forced before first network bring-up, so captive portals remain
+          usable. You can point Private DNS at any DoT provider, or turn it off briefly to sign in
+          on public Wi-Fi.</p>
+
+        <h2>Per-connection MAC randomization</h2>
+        <p>Inherited from GrapheneOS: a fresh random MAC per Wi-Fi network. WraithLink does not ship
+          a separate MAC overlay in v1.</p>
+
+        <h2>Disable 2G</h2>
+        <p>Setup deep-links into mobile network settings so you can turn 2G off and blunt
+          IMSI-catcher downgrade attacks.</p>
+
+        <h2>Tor and VPN apps</h2>
+        <p>Orbot, Tor Browser, and Mullvad VPN are <strong>not</strong> preinstalled in the lean v1
+          image. Install them from F-Droid when you need them. The
+          <a href="chat.html">messenger</a> and <a href="x47-pairing.html">X47 pairing</a> use Tor
+          onion services once Tor is available on the device.</p>
+
+        <h2>Not in v1</h2>
+        <p>An automated Tor-only "Ghost" profile and a bundled dnscrypt-proxy service are milestone
+          work — do not expect them in the first factory image.</p>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    WraithLink - derived from GrapheneOS and AOSP, not affiliated with either.
+    &middot; <a href="../index.html">Home</a> &middot; <a href="../install/index.html">Install</a>
+  </footer>
+</body>
+</html>

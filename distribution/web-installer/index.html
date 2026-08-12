@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Install WraithLink</title>
+  <style>
+    :root { --bg:#0a0b10; --fg:#e7e9f0; --muted:#8b8fa3; --accent:#7c5cff; --card:#14161f; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, sans-serif; background:var(--bg); color:var(--fg); }
+    header { padding:48px 24px 24px; text-align:center; }
+    h1 { margin:0; font-size:2.2rem; letter-spacing:.02em; }
+    .tag { color:var(--muted); margin-top:8px; }
+    main { max-width:760px; margin:0 auto; padding:0 24px 64px; }
+    .card { background:var(--card); border:1px solid #222634; border-radius:14px; padding:24px; margin:16px 0; }
+    ol { line-height:1.7; }
+    button { background:var(--accent); color:#fff; border:0; border-radius:10px;
+             padding:14px 22px; font-size:1rem; cursor:pointer; }
+    button:disabled { opacity:.5; cursor:not-allowed; }
+    #log { font-family: ui-monospace, monospace; font-size:.85rem; color:var(--muted);
+           white-space:pre-wrap; margin-top:16px; max-height:220px; overflow:auto; }
+    .warn { color:#ffb454; }
+    a { color:var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>WraithLink</h1>
+    <div class="tag">Browser-based installer for supported Pixel devices</div>
+  </header>
+
+  <main>
+    <div class="card">
+      <strong>Before you start</strong>
+      <ol>
+        <li>Use a Chromium-based browser (WebUSB is required).</li>
+        <li>Enable Developer options, then turn on <em>USB debugging</em> and <em>OEM unlocking</em>.</li>
+        <li>Connect your Pixel by USB and reboot to the bootloader.</li>
+        <li>Back up your data - installing wipes the device.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <strong>Install</strong>
+      <p class="tag">Unlocks the bootloader, flashes WraithLink factory images, then
+      relocks against the WraithLink verified-boot key.</p>
+      <button id="connect">Connect device</button>
+      <button id="flash" disabled>Flash WraithLink</button>
+      <div id="log">Waiting for device...</div>
+    </div>
+
+    <div class="card">
+      <span class="warn">Security note:</span>
+      <p class="tag">This installer runs entirely in your browser and flashes images signed
+      with the WraithLink release key. Verify the page URL and image checksums against the
+      <a href="#">release notes</a> before flashing.</p>
+    </div>
+  </main>
+
+  <!--
+    Wiring: WraithLink reuses the fastboot-over-WebUSB approach GrapheneOS uses.
+    Bundle a fastboot WebUSB library (e.g. android-tools fastboot.js / the
+    grapheneos web-install source, rebranded) as installer.js and implement:
+      - connect(): navigator.usb.requestDevice({ filters:[{ vendorId:0x18d1 }] })
+      - flash(): unlock -> flash factory zip -> lock with WraithLink avb key
+    The factory zip + checksums are served from your GitHub Release / OTA host.
+  -->
+  <script type="module" src="./installer.js"></script>
+  <script>
+    // Minimal fallback so the page is usable before installer.js is added.
+    const log = (m) => (document.getElementById('log').textContent += "\n" + m);
+    document.getElementById('connect').addEventListener('click', async () => {
+      if (!('usb' in navigator)) return log('WebUSB not supported in this browser.');
+      try {
+        const dev = await navigator.usb.requestDevice({ filters: [{ vendorId: 0x18d1 }] });
+        log('Connected: ' + (dev.productName || 'Pixel device'));
+        document.getElementById('flash').disabled = false;
+      } catch (e) { log('No device selected: ' + e.message); }
+    });
+    document.getElementById('flash').addEventListener('click', () =>
+      log('Flashing requires installer.js (fastboot WebUSB). See source comments.'));
+  </script>
+</body>
+</html>

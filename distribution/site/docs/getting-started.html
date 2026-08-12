@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs — Getting started</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Start</div>
+        <a href="index.html">Overview</a>
+        <a class="active" href="getting-started.html">Getting started</a>
+        <a href="install.html">Install</a>
+        <a href="devices.html">Devices</a>
+        <div class="group">Features</div>
+        <a href="features.html">Feature tour</a>
+        <a href="duress.html">Duress &amp; WraithVault</a>
+        <a href="network-privacy.html">Network privacy</a>
+        <a href="media-privacy.html">Media privacy</a>
+        <a href="chat.html">Messenger</a>
+        <a href="x47-pairing.html">X47 pairing</a>
+        <div class="group">Ops</div>
+        <a href="ota.html">OTA &amp; updates</a>
+        <a href="build.html">Build from source</a>
+        <a href="keys.html">Signing keys</a>
+        <div class="group">Reference</div>
+        <a href="usage.html">Daily use</a>
+        <a href="security.html">Security model</a>
+        <a href="lineage.html">Lineage edition</a>
+        <a href="faq.html">FAQ</a>
+      </aside>
+      <article>
+        <h1>Getting started</h1>
+        <p>End-to-end path from a stock Pixel to a hardened WraithLink device.</p>
+
+        <h2>1. Confirm hardware</h2>
+        <p>You need a <strong>Pixel 9</strong> (<code>tokay</code>) or <strong>Pixel 8a</strong> (<code>akita</code>).
+          Other Pixels can be built later; non-Pixels should use
+          <a href="lineage.html">WraithLink Lineage</a> (weaker security).</p>
+
+        <h2>2. Back up</h2>
+        <p>Flashing erases the device. Export anything you need before OEM unlock.</p>
+
+        <h2>3. Flash</h2>
+        <p>Use the <a href="../install/index.html">web installer</a> (Chromium + WebUSB) or
+          <code>fastboot</code> with the factory zip. Full steps:
+          <a href="install.html">Install guide</a>.</p>
+
+        <h2>4. First boot — Setup</h2>
+        <ol>
+          <li>Set a strong screen lock (long PIN or passphrase).</li>
+          <li>Set the <strong>panic wipe</strong> credential (GrapheneOS duress) — different from your unlock PIN.</li>
+          <li>Enable USB-blocked-while-locked, auto-reboot / auto-wipe as you prefer.</li>
+          <li>Disable 2G per SIM.</li>
+          <li>Optional: one-tap Mullvad encrypted DNS.</li>
+          <li>Optional: create <strong>WraithVault</strong> and back it up off-phone.</li>
+        </ol>
+
+        <h2>5. Apps</h2>
+        <p>F-Droid is preinstalled. Add Orbot, Tor Browser, Mullvad VPN from there.
+          Sandboxed Play is an optional GrapheneOS offer — not forced.</p>
+
+        <h2>6. Messenger</h2>
+        <p>Open WraithLink Messenger, create identity, verify contacts with the short code before chatting.
+          See <a href="chat.html">Messenger</a>.</p>
+
+        <div class="callout">
+          <span class="lbl">Decoy PIN</span>
+          <p style="margin:8px 0 0;color:var(--muted)">Builds with <code>ro.wraithlink.decoy=1</code> can arm a
+            coercion PIN that drops the vault. Confirm backup in Setup first.
+            See <a href="duress.html">Duress &amp; WraithVault</a>.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+  <footer>WraithLink docs &middot; <a href="../index.html">Home</a></footer>
+</body>
+</html>

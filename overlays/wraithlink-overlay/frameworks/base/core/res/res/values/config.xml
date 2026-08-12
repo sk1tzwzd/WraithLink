@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  WraithLink product overlay for frameworks/base core resources.
+  Overrides AOSP defaults by matching existing resource names. Applied via
+  PRODUCT_PACKAGE_OVERLAYS (see overlays/apply-network-privacy.sh).
+
+  Goal: never present a stable/real Wi-Fi MAC. Default to non-persistent
+  (per-connection) MAC randomization, including on open networks, and do not
+  fall back to the factory MAC.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Enable connected-MAC randomization support. -->
+    <bool name="config_wifi_connected_mac_randomization_supported">true</bool>
+
+    <!-- Allow the strongest (non-persistent) randomization even on open SSIDs,
+         so every connection uses a fresh random MAC. -->
+    <bool name="config_wifiAllowNonPersistentMacRandomizationOnOpenSsid">true</bool>
+
+    <!-- Do not enhance/relax randomization for connectivity; privacy first. -->
+    <bool name="config_wifiP2pMacRandomizationSupported">true</bool>
+
+    <!-- SoftAp (hotspot) MAC randomization support. -->
+    <bool name="config_wifiSoftapMacRandomizationSupported">true</bool>
+</resources>

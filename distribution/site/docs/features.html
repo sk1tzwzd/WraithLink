@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs - Feature tour</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="../index.html#features">Features</a>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Start</div>
+        <a href="index.html">Overview</a>
+        <a href="install.html">Install</a>
+        <a href="devices.html">Devices</a>
+        <div class="group">Features</div>
+        <a class="active" href="features.html">Feature tour</a>
+        <a href="duress.html">Duress &amp; WraithVault</a>
+        <a href="network-privacy.html">Network privacy</a>
+        <a href="chat.html">WraithLink messenger</a>
+        <a href="x47-pairing.html">X47 pairing</a>
+        <div class="group">Reference</div>
+        <a href="usage.html">Daily use</a>
+        <a href="security.html">Security model</a>
+        <a href="faq.html">FAQ</a>
+      </aside>
+
+      <article>
+        <h1>Feature tour</h1>
+        <p>What the first WraithLink release includes on top of GrapheneOS, and what is still
+          milestone work.</p>
+
+        <h2>Coercion resistance (v1)</h2>
+        <ul>
+          <li><strong>Panic wipe</strong> — GrapheneOS's key-destroying duress credential, surfaced
+            in Setup. <a href="duress.html">Details</a>.</li>
+          <li><strong>WraithVault</strong> — a secondary user profile for sensitive apps/data.
+            Create and back it up from Setup; it is not hidden from the system UI.</li>
+          <li><strong>Decoy PIN</strong> — Milestone 2: unlocks the everyday phone while silently
+            destroying WraithVault. Not in lean published images until hardware QA. Not a panic-wipe
+            replacement and not deniable storage.</li>
+        </ul>
+
+        <h2>At-rest hardening</h2>
+        <ul>
+          <li><strong>Auto-reboot</strong> and <strong>auto-wipe</strong> — configure via Setup → Settings.</li>
+          <li><strong>USB data blocked while locked</strong> (allowed when unlocked for backups).</li>
+          <li><strong>Media metadata strip</strong> — EXIF/GPS/device tags removed when media is indexed.</li>
+        </ul>
+
+        <h2>Network privacy</h2>
+        <ul>
+          <li><strong>Encrypted DNS</strong> — one-tap Mullvad DoT in Setup (not forced at first boot).</li>
+          <li><strong>Per-connection MAC randomization</strong> — GrapheneOS default.</li>
+          <li><strong>Disable 2G</strong> — guided into mobile network settings.</li>
+          <li>Install Orbot / Tor Browser / Mullvad VPN from <strong>F-Droid</strong> when you need them.</li>
+        </ul>
+
+        <h2>Communication</h2>
+        <ul>
+          <li><strong>WraithLink messenger</strong> — E2EE, P2P over Tor, disappearing messages,
+            mandatory verification. <a href="chat.html">Details</a>.</li>
+        </ul>
+
+        <h2>Companion desktop</h2>
+        <ul>
+          <li><strong>X47 pairing</strong> — one phone to one desktop over an authorized onion service.
+            <a href="x47-pairing.html">Details</a>.</li>
+        </ul>
+
+        <h2>Preinstalled apps</h2>
+        <ul>
+          <li>F-Droid (and Setup; Chat when the build stages successfully).</li>
+          <li>Sandboxed Google Play remains an optional first-run offer — not shipped in the image.</li>
+        </ul>
+
+        <h2>Guided setup</h2>
+        <p>The <a href="usage.html">WraithLink Setup</a> wizard sets safe defaults and walks through
+          the steps above. It is guided but entirely skippable.</p>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    WraithLink - derived from GrapheneOS and AOSP, not affiliated with either.
+    &middot; <a href="../index.html">Home</a> &middot; <a href="../install/index.html">Install</a>
+  </footer>
+</body>
+</html>

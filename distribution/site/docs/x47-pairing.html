@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs - X47 pairing</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="../index.html#features">Features</a>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Start</div>
+        <a href="index.html">Overview</a>
+        <a href="install.html">Install</a>
+        <a href="devices.html">Devices</a>
+        <div class="group">Features</div>
+        <a href="features.html">Feature tour</a>
+        <a href="duress.html">Duress &amp; WraithVault</a>
+        <a href="network-privacy.html">Network privacy</a>
+        <a href="chat.html">WraithLink messenger</a>
+        <a class="active" href="x47-pairing.html">X47 pairing</a>
+        <div class="group">Reference</div>
+        <a href="usage.html">Daily use</a>
+        <a href="security.html">Security model</a>
+        <a href="faq.html">FAQ</a>
+      </aside>
+
+      <article>
+        <h1>X47 desktop pairing</h1>
+        <p>X47 is your own hardened Linux desktop. WraithLink pairs to it the way some phones pair to
+          a Kali box - one phone, one desktop, over an exclusive encrypted link - so the heavy tools
+          (and your WraithVault backups) live on the desktop while the phone stays locked down.</p>
+
+        <h2>Why keep the tools off the phone</h2>
+        <p>Running wireless auditing and other offensive tooling on the phone would mean an unlocked
+          bootloader, root, and a custom kernel with injection drivers - throwing away verified boot
+          and most of WraithLink's security in the process. Instead, the phone is a hardened remote:
+          it connects to X47 and drives the tools there. The desktop does the work; the phone keeps its
+          guarantees.</p>
+
+        <h2>The exclusive link</h2>
+        <p>Pairing is mutual and deliberately narrow, so only your phone can reach your desktop:</p>
+        <ul>
+          <li><strong>Onion service with client authorization.</strong> X47 exposes its services as a
+            Tor v3 onion service that only presents itself to clients holding the authorized key - your
+            phone. There is no open port to scan, from anywhere in the world.</li>
+          <li><strong>QR mutual pairing.</strong> The two devices exchange their public keys by
+            scanning a QR code, so keys are never typed or sent over the wire in the clear.</li>
+          <li><strong>Authenticated key exchange with a verification code.</strong> Pairing runs a
+            password-authenticated exchange and then shows a short authentication string on both
+            screens. You confirm they match, which rules out a man-in-the-middle even if the QR channel
+            were observed.</li>
+        </ul>
+
+        <h2>What you can do once paired</h2>
+        <ul>
+          <li>Open a shell or remote session to X47 to run desktop tools.</li>
+          <li>Push encrypted <a href="duress.html">WraithVault</a> backups to X47 automatically
+            whenever the link is up - the recommended backup path.</li>
+          <li>Move files across the link without exposing either device to the wider network.</li>
+        </ul>
+
+        <h2>If you don't run X47</h2>
+        <p>X47 is optional. Without it, WraithVault backs up to an encrypted USB-C drive you plug in
+          manually. The phone works fully on its own; X47 just adds a private desktop companion and an
+          automatic backup target.</p>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    WraithLink - derived from GrapheneOS and AOSP, not affiliated with either.
+    &middot; <a href="../index.html">Home</a> &middot; <a href="../install/index.html">Install</a>
+  </footer>
+</body>
+</html>

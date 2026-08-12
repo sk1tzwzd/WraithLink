@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="LineageOS/android_device_fairphone_FP5" path="device/fairphone/FP5" remote="github" revision="lineage-22.2" />
+  <project name="LineageOS/android_kernel_fairphone_qcm6490" path="kernel/fairphone/qcm6490" remote="github" revision="lineage-22.2" />
+  <project name="TheMuppets/proprietary_vendor_fairphone_FP5" path="vendor/fairphone/FP5" remote="github" revision="lineage-22.2" />
+</manifest>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink</title>
+  <meta name="description" content="WraithLink — anonymous hardened Android for Pixel. GrapheneOS-based. Your keys. Your OTA. Panic wipe. Tor messenger." />
+  <link rel="icon" href="assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="index.html"><img src="assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="#features">Features</a>
+    <a class="link" href="downloads/index.html">Messenger</a>
+    <a class="link" href="docs/index.html">Docs</a>
+    <a class="link" href="lineage/index.html">Lineage</a>
+    <a class="cta" href="install/index.html">Install</a>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-visual" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <p class="prompt">root@wraithlink:~# <span class="cursor"></span></p>
+      <h1 class="brand-mark">WraithLink</h1>
+      <p class="lede">Hardened Android for Pixel. Built on GrapheneOS. Signed with your release keys.
+        Panic wipe that actually destroys encryption keys. No accounts. No telemetry. No marketing theater.</p>
+      <div class="btns">
+        <a class="btn primary" href="install/index.html">Flash Pixel</a>
+        <a class="btn ghost" href="docs/index.html">Documentation</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="features">
+      <h2 class="section-title">What ships</h2>
+      <p class="section-sub">Lean Pixel image. Features below are real. Milestone work is labeled — not sold as done.</p>
+      <ul class="feature-list">
+        <li>
+          <span class="name">Panic wipe</span>
+          <p class="desc">GrapheneOS duress credential destroys disk keys first, then wipes. Interrupt-resistant.</p>
+        </li>
+        <li>
+          <span class="name">WraithVault</span>
+          <p class="desc">Secondary user for sensitive apps. Visible profile — backup off-phone. Not deniable storage.</p>
+        </li>
+        <li>
+          <span class="name">Media strip</span>
+          <p class="desc">GPS, device model, timestamps removed when photos/videos are indexed.</p>
+        </li>
+        <li>
+          <span class="name">Messenger</span>
+          <p class="desc">E2EE peer-to-peer over Tor. No server. Messages stay in RAM.
+            <a href="downloads/index.html">Download for any Android 14+ phone</a>.</p>
+        </li>
+        <li>
+          <span class="name">Own OTA</span>
+          <p class="desc">Updater pointed at your domain. Relocked bootloader against the WraithLink key.</p>
+        </li>
+        <li>
+          <span class="name">Setup</span>
+          <p class="desc">Guided hardening: lock, panic, USB, 2G, Mullvad DNS one-tap, vault.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="devices">
+      <h2 class="section-title">Devices</h2>
+      <p class="section-sub">Pixel-only for the high-assurance build — custom AVB relock + Titan/SE duress.</p>
+      <div class="grid">
+        <div class="card"><h3>Pixel 9</h3><p>Codename <code>tokay</code>. Reference factory image.</p></div>
+        <div class="card"><h3>Pixel 8a</h3><p>Codename <code>akita</code>. Second ship target.</p></div>
+        <div class="card"><h3>Other phones</h3><p><a href="lineage/index.html">WraithLink Lineage</a> — wider devices, weaker boot story, same messenger.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Ceiling</h2>
+      <div class="callout warn">
+        <span class="lbl">Read before you trust it</span>
+        <p style="margin:8px 0 0;color:var(--muted)">Nothing undoes a forensic image taken before unlock.
+          Soft claims die here. Details in the <a href="docs/security.html">security model</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Independent project derived from GrapheneOS / AOSP — not affiliated with either or with Google.
+    &middot; <a href="downloads/index.html">Messenger</a>
+    &middot; <a href="docs/index.html">Docs</a>
+    &middot; <a href="install/index.html">Install</a>
+    &middot; <a href="lineage/index.html">Lineage</a>
+  </footer>
+</body>
+</html>

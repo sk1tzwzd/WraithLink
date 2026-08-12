@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs - Daily use</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="../index.html#features">Features</a>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Start</div>
+        <a href="index.html">Overview</a>
+        <a href="install.html">Install</a>
+        <a href="devices.html">Devices</a>
+        <div class="group">Features</div>
+        <a href="features.html">Feature tour</a>
+        <a href="duress.html">Duress &amp; WraithVault</a>
+        <a href="network-privacy.html">Network privacy</a>
+        <a href="chat.html">WraithLink messenger</a>
+        <a href="x47-pairing.html">X47 pairing</a>
+        <div class="group">Reference</div>
+        <a class="active" href="usage.html">Daily use</a>
+        <a href="security.html">Security model</a>
+        <a href="faq.html">FAQ</a>
+      </aside>
+
+      <article>
+        <h1>Daily use</h1>
+
+        <h2>First boot: the setup wizard</h2>
+        <p>After you flash and boot WraithLink, it applies safe defaults and then offers
+          <strong>WraithLink Setup</strong>. Every step is optional — skip and return later from the
+          app icon. Typical order:</p>
+        <ol>
+          <li>A strong screen lock (the root of your disk encryption).</li>
+          <li>The panic (duress wipe) credential.</li>
+          <li>Auto-reboot and auto-wipe.</li>
+          <li>Blocking USB while locked.</li>
+          <li>Disabling 2G.</li>
+          <li>Optional Mullvad encrypted DNS.</li>
+          <li>Creating WraithVault (secondary profile).</li>
+          <li>Backing WraithVault up (reminder — not a hard gate).</li>
+          <li>Apps via F-Droid; optional sandboxed Google Play.</li>
+        </ol>
+
+        <h2>Credentials in v1</h2>
+        <p>Use your normal PIN every day. Memorise a distinct panic credential. A decoy-duress PIN
+          that destroys the vault while opening the phone is <strong>not</strong> in the first
+          release — see <a href="duress.html">Duress &amp; WraithVault</a>.</p>
+
+        <h2>Using WraithVault</h2>
+        <p>Switch into WraithVault the way you switch Android user profiles, give it its own strong
+          lock, and put sensitive apps there. Back it up regularly to
+          <a href="x47-pairing.html">X47</a> or an encrypted USB-C drive.</p>
+
+        <h2>Apps and updates</h2>
+        <p>Install open-source apps from F-Droid. System updates arrive over the air from WraithLink's
+          own OTA server; reboot when prompted.</p>
+
+        <h2>Tor / VPN</h2>
+        <p>Install Orbot, Tor Browser, or Mullvad VPN from F-Droid when you need them. There is no
+          automatic Tor-only "Ghost" profile in v1.</p>
+
+        <h2>If a network won't connect</h2>
+        <p>Strict encrypted DNS can block captive-portal Wi-Fi. Turn Private DNS off briefly in
+          Settings, complete the login page, then turn it back on. See
+          <a href="network-privacy.html">network privacy</a>.</p>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    WraithLink - derived from GrapheneOS and AOSP, not affiliated with either.
+    &middot; <a href="../index.html">Home</a> &middot; <a href="../install/index.html">Install</a>
+  </footer>
+</body>
+</html>

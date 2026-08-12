@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  WraithLink SettingsProvider defaults overlay.
+  Overrides first-boot defaults by matching existing def_* resource names.
+  Encrypted DNS on by default (DoT "hostname" mode). The actual hostname is set
+  at first boot by wraithlink-provision (from WL_DEFAULT_DNS_HOST), since the
+  specifier is a Global setting value rather than a static resource default.
+-->
+<resources>
+    <!-- Private DNS mode: off | opportunistic | hostname. WraithLink = hostname (strict DoT). -->
+    <string name="def_private_dns_mode" translatable="false">hostname</string>
+
+    <!-- Per-connection (non-persistent) Wi-Fi MAC randomization enabled by default. -->
+    <bool name="def_wifi_connected_mac_randomization_enabled">true</bool>
+</resources>

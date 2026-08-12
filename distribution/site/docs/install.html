@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs - Install</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="../index.html#features">Features</a>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Start</div>
+        <a href="index.html">Overview</a>
+        <a class="active" href="install.html">Install</a>
+        <a href="devices.html">Devices</a>
+        <div class="group">Features</div>
+        <a href="features.html">Feature tour</a>
+        <a href="duress.html">Duress &amp; WraithVault</a>
+        <a href="network-privacy.html">Network privacy</a>
+        <a href="chat.html">WraithLink messenger</a>
+        <a href="x47-pairing.html">X47 pairing</a>
+        <div class="group">Reference</div>
+        <a href="usage.html">Daily use</a>
+        <a href="security.html">Security model</a>
+        <a href="faq.html">FAQ</a>
+      </aside>
+
+      <article>
+        <h1>Installing WraithLink</h1>
+        <p>There are two ways to install: the <a href="../install/index.html">web installer</a>, which
+          flashes from a Chromium browser over WebUSB, and the <code>fastboot</code> command line,
+          which works everywhere and is the fallback if the browser path misbehaves. Both do the same
+          three things: unlock the bootloader, write the WraithLink factory image, and relock the
+          bootloader against WraithLink's own verified-boot key.</p>
+
+        <div class="callout danger">
+          <span class="lbl">This erases everything.</span> Flashing wipes the device. Back up first.
+          Only install on a <a href="devices.html">supported Pixel</a> - other hardware cannot provide
+          the guarantees WraithLink depends on.
+        </div>
+
+        <h2>1. Prepare the phone</h2>
+        <ol>
+          <li>Open <strong>Settings &rarr; About phone</strong> and tap <strong>Build number</strong>
+            seven times to reveal Developer options.</li>
+          <li>In <strong>Settings &rarr; System &rarr; Developer options</strong>, enable
+            <strong>OEM unlocking</strong> and <strong>USB debugging</strong>. If OEM unlocking is
+            greyed out, connect to the internet and wait a few minutes, or remove any carrier lock.</li>
+          <li>Power the phone off, then hold <em>Volume Down</em> while powering on to enter the
+            bootloader.</li>
+        </ol>
+
+        <h2>2A. Flash with the web installer</h2>
+        <ol>
+          <li>Open the <a href="../install/index.html">installer</a> in Chrome, Edge, or Brave on a
+            computer. It must be served over HTTPS.</li>
+          <li>Click <strong>Connect device</strong> and choose your Pixel from the browser prompt.</li>
+          <li>Click <strong>Flash WraithLink</strong>. The image is downloaded, its SHA-256 is verified
+            in the browser, the bootloader is unlocked (confirm on the phone), and the image is
+            written. The phone reboots a few times - leave the cable connected.</li>
+          <li>When flashing finishes, click <strong>Relock bootloader</strong> and confirm on the
+            phone. Relocking restores verified boot; skipping it leaves the device less secure.</li>
+        </ol>
+
+        <h2>2B. Flash with fastboot</h2>
+        <p>Install the platform-tools <code>fastboot</code> from Google, download the factory image
+          and its checksum from the release, then:</p>
+<pre><code># verify the download before trusting it
+sha256sum -c wraithlink-&lt;device&gt;-factory.zip.sha256
+
+# unzip, then from inside the extracted folder:
+fastboot flashing unlock         # confirm on the phone (this wipes it)
+./flash-all.sh                   # writes bootloader, radio, and system images
+fastboot flashing lock           # confirm on the phone to restore verified boot</code></pre>
+        <p>Do not interrupt the relock step. Once the phone boots, you will be greeted by the
+          <a href="usage.html">WraithLink Setup</a> wizard.</p>
+
+        <h2>3. First boot</h2>
+        <p>WraithLink applies its safe defaults automatically and then offers the setup wizard. It is
+          guided but every step is skippable. At minimum, set a strong screen lock and read the
+          <a href="duress.html">duress</a> section before arming anything destructive.</p>
+
+        <h2>Updates</h2>
+        <p>WraithLink checks its own update server and installs signed over-the-air updates in the
+          background, seamlessly, using the same A/B mechanism as the base system. You never sideload
+          an update by hand.</p>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    WraithLink - derived from GrapheneOS and AOSP, not affiliated with either.
+    &middot; <a href="../index.html">Home</a> &middot; <a href="../install/index.html">Install</a>
+  </footer>
+</body>
+</html>

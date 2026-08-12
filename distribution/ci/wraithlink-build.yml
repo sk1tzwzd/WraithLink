@@ -1,0 +1,51 @@
+# WraithLink build workflow.
+#
+# IMPORTANT: this MUST run on a SELF-HOSTED runner (your beast server). GitHub-hosted
+# runners cannot build AOSP (14GB disk / 7GB RAM / 6h limit vs ~236GB + 32GB RAM +
+# many hours). Register your build server:
+#   Settings -> Actions -> Runners -> New self-hosted runner  (label: wraithlink-builder)
+#
+# Copy this file to .github/workflows/ in your GitHub repo.
+name: WraithLink Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_number:
+        description: "Build number (YYYYMMDDNN). Blank = auto."
+        required: false
+        default: ""
+  push:
+    tags: ["v*"]
+
+concurrency:
+  group: wraithlink-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: [self-hosted, linux, x64, wraithlink-builder]
+    timeout-minutes: 1440
+    steps:
+      - name: Checkout WraithLink tooling
+        uses: actions/checkout@v4
+
+      - name: Provision config from secrets
+        run: |
+          cp config/wraithlink.conf.example config/wraithlink.conf
+          sed -i "s#^WL_DOMAIN=.*#WL_DOMAIN=\"${{ secrets.WL_DOMAIN }}\"#" config/wraithlink.conf
+          sed -i "s#^WL_OTA_URL=.*#WL_OTA_URL=\"https://ota.${{ secrets.WL_DOMAIN }}\"#" config/wraithlink.conf
+          sed -i "s#^WL_DEVICE=.*#WL_DEVICE=\"${{ vars.WL_DEVICE }}\"#" config/wraithlink.conf
+
+      - name: Run full pipeline
+        env:
+          # Signing key passphrase injected at runtime; keys live on the runner, never in git.
+          WL_KEY_PASSPHRASE: ${{ secrets.WL_KEY_PASSPHRASE }}
+        run: ./scripts/build-all.sh "${{ github.event.inputs.build_number }}"
+
+      - name: Publish factory images to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ env.HOME }}/wraithlink-src/releases/**/release-*/*.zip
+          fail_on_unmatched_files: false

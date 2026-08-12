@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Lineage</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="../docs/lineage.html">Docs</a>
+    <a class="link" href="../index.html">Pixel edition</a>
+    <a class="cta" href="../downloads/index.html">Messenger</a>
+  </nav>
+
+  <header class="hero" style="min-height:60vh">
+    <div class="hero-visual" style="background-image:url('../assets/wraithlink-splash.png')"></div>
+    <div class="hero-inner">
+      <p class="prompt">root@wraithlink:~# edition=lineage <span class="cursor"></span></p>
+      <h1 class="brand-mark">Lineage</h1>
+      <p class="lede">Same messenger. Many more phones. Weaker OS security — unlocked bootloaders,
+        software wipe only. Prefer Pixel WraithLink when SE duress matters.</p>
+      <div class="btns">
+        <a class="btn primary" id="btn-messenger" href="../downloads/index.html">Messenger APK</a>
+        <a class="btn ghost" href="../docs/lineage.html">Security notes</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="section-title">Devices</h2>
+    <p class="section-sub"><code>rom</code> = zip published. <code>building</code> = in progress.
+      <code>apk</code> = stock Lineage + messenger APK for now.</p>
+    <div id="device-list" class="grid"></div>
+  </main>
+
+  <footer>
+    Not GrapheneOS. Not affiliated with LineageOS.
+    &middot; <a href="../index.html">Pixel WraithLink</a>
+  </footer>
+  <script>
+    fetch('devices.json').then(r => r.json()).then(data => {
+      const root = document.getElementById('device-list');
+      const devices = data.devices || {};
+      const keys = Object.keys(devices).sort();
+      root.innerHTML = keys.map(codename => {
+        const d = devices[codename];
+        const status = d.status || 'apk';
+        let action = status === 'rom' && d.zip
+          ? `<p style="margin-top:12px"><a class="btn primary" href="${d.zip}">Zip</a></p>
+             <p class="mono" style="font-size:11px;margin-top:8px;color:var(--dim)">${d.sha256 || ''}</p>`
+          : `<p style="margin-top:12px"><a class="btn ghost" href="${data.messenger_apk || 'downloads/WraithLinkChat.apk'}">APK</a></p>`;
+        return `<div class="card"><h3>${codename} <span class="pill">${status}</span></h3>
+          <p>${d.note || ''}</p>${action}</div>`;
+      }).join('') || '<p>No devices listed.</p>';
+      if (data.messenger_apk) document.getElementById('btn-messenger').href = data.messenger_apk;
+    }).catch(() => {
+      document.getElementById('device-list').innerHTML = '<p>Could not load devices.json.</p>';
+    });
+  </script>
+</body>
+</html>

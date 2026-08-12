@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Lineage — Security</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="index.html">Lineage edition</a>
+    <a class="link" href="../docs/security.html">Pixel security</a>
+  </nav>
+
+  <div class="wrap">
+    <article style="max-width:720px;margin:40px auto">
+      <h1>Security model — Lineage edition</h1>
+      <div class="callout warn">
+        <span class="lbl">Weaker than Pixel WraithLink.</span> This edition trades GrapheneOS-grade
+        boot integrity for device coverage. Read this before trusting it with anything important.
+      </div>
+
+      <h2>You get</h2>
+      <ul>
+        <li>Android disk encryption (device baseline)</li>
+        <li>WraithLink messenger — E2EE over Tor, no message server (same app as Pixel)</li>
+        <li>Optional WraithVault secondary user</li>
+        <li>Soft panic — <code>wipeData()</code> factory reset via device admin</li>
+      </ul>
+
+      <h2>You do not get</h2>
+      <ul>
+        <li>Bootloader relock to your own AVB key (most phones stay unlocked)</li>
+        <li>Titan / SE key-destroying duress</li>
+        <li>GrapheneOS exploit-mitigation baseline</li>
+        <li>Decoy PIN (not in Lineage v1)</li>
+      </ul>
+
+      <p>For coercion / forensics where verified boot and SE duress matter, use
+        <a href="../install/index.html">Pixel WraithLink</a>.</p>
+    </article>
+  </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs — Building</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Ops</div>
+        <a class="active" href="building.html">Building</a>
+        <a href="ota.html">OTA &amp; updates</a>
+        <div class="group">Start</div>
+        <a href="index.html">Overview</a>
+        <a href="devices.html">Devices</a>
+      </aside>
+      <article>
+        <h1>Building</h1>
+        <p>The public git repo is the <em>toolkit</em> (scripts, overlays, apps). GrapheneOS source is
+          synced with <code>repo</code> on a build host — typically 32 GiB+ RAM, hundreds of GB disk.</p>
+        <h2>Pixel / GrapheneOS pipeline</h2>
+<pre><code>cp config/wraithlink.conf.example config/wraithlink.conf
+# edit WL_DEVICE (tokay|akita), WL_DOMAIN, paths
+bash scripts/00-setup-build-env.sh
+bash scripts/01-sync-source.sh
+bash scripts/02-extract-vendor.sh
+bash scripts/03-gen-keys.sh          # backup keys offline
+bash scripts/04-apply-rebrand.sh
+bash scripts/05-build.sh
+bash scripts/06-generate-release.sh YYYYMMDDNN
+bash scripts/07-deploy-site.sh</code></pre>
+        <h2>Configs</h2>
+        <table>
+          <tr><th>File</th><th>Use</th></tr>
+          <tr><td><code>config/wraithlink.conf</code></td><td>Lean Pixel publish (decoy off)</td></tr>
+          <tr><td><code>config/wraithlink-akita.conf</code></td><td>Pixel 8a</td></tr>
+          <tr><td><code>config/wraithlink-decoy.conf</code></td><td>M2 decoy PIN rebuild — do not overwrite lean until QA</td></tr>
+          <tr><td><code>lineage/config/…</code></td><td>WraithLink Lineage tree (separate <code>out/</code>)</td></tr>
+        </table>
+        <h2>Keys</h2>
+        <p>Encrypted under <code>keys/&lt;device&gt;/</code>. Back up with passphrase offline before any flash.
+          See repo <code>docs/keys-backup.md</code>.</p>
+        <div class="callout warn">
+          <span class="lbl">Never</span> put signing keys under the public web root (<code>/srv</code>).
+        </div>
+      </article>
+    </div>
+  </div>
+  <footer><a href="index.html">Docs</a></footer>
+</body>
+</html>

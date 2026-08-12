@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs - Devices</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="../index.html#features">Features</a>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Start</div>
+        <a href="index.html">Overview</a>
+        <a href="install.html">Install</a>
+        <a class="active" href="devices.html">Devices</a>
+        <div class="group">Features</div>
+        <a href="features.html">Feature tour</a>
+        <a href="duress.html">Duress &amp; WraithVault</a>
+        <a href="network-privacy.html">Network privacy</a>
+        <a href="chat.html">WraithLink messenger</a>
+        <a href="x47-pairing.html">X47 pairing</a>
+        <div class="group">Reference</div>
+        <a href="usage.html">Daily use</a>
+        <a href="security.html">Security model</a>
+        <a href="faq.html">FAQ</a>
+      </aside>
+
+      <article>
+        <h1>Supported devices</h1>
+        <p>WraithLink runs on Google Pixel phones only. The first published images target two
+          devices; the same pipeline can build other GrapheneOS Pixels later.</p>
+
+        <table>
+          <tr><th>Device</th><th>Codename</th><th>Status</th></tr>
+          <tr><td>Pixel 9</td><td>tokay</td><td>v1 reference / factory images</td></tr>
+          <tr><td>Pixel 8a</td><td>akita</td><td>v1 second ship target</td></tr>
+        </table>
+
+        <h2>Why Pixel-only</h2>
+        <ul>
+          <li><strong>A relockable bootloader that accepts a custom key</strong> — verified boot after install.</li>
+          <li><strong>A dedicated secure element</strong> — real key-destroying panic wipe.</li>
+          <li><strong>Prompt firmware support</strong> — monthly patches WraithLink can ship.</li>
+        </ul>
+
+        <h2>What you lose on other hardware</h2>
+        <p>Without custom-key verified boot or a secure element, the panic wipe and integrity model
+          stop being trustworthy. We would rather support fewer devices properly.</p>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    WraithLink - derived from GrapheneOS and AOSP, not affiliated with either.
+    &middot; <a href="../index.html">Home</a> &middot; <a href="../install/index.html">Install</a>
+  </footer>
+</body>
+</html>

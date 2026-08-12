@@ -1,0 +1,42 @@
+# Local config with secrets/paths
+config/wraithlink.conf
+**/local.properties
+local.properties
+
+# Synced AOSP/GrapheneOS / Lineage source trees (never commit; use `repo`)
+wraithlink-src/
+wraithlink-lineage-src/
+*/out/
+out/
+
+# Signing keys and anything sensitive - NEVER commit
+keys/
+keys-local/
+*.pem
+*.pk8
+*.x509.pem
+*.jks
+*.keystore
+*.idsig
+avb*.bin
+id_ed25519*
+*.priv
+
+# Build artifacts / releases
+releases/
+*.zip
+*.img
+*.apk
+*.aab
+
+# Node / gradle / misc
+node_modules/
+.gradle/
+**/.gradle/
+build/
+*.log
+.DS_Store
+
+# Python bytecode
+__pycache__/
+*.pyc

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs — OTA &amp; updates</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Ops</div>
+        <a class="active" href="ota.html">OTA &amp; updates</a>
+        <a href="build.html">Build from source</a>
+        <a href="keys.html">Signing keys</a>
+        <div class="group">Reference</div>
+        <a href="security.html">Security model</a>
+        <a href="faq.html">FAQ</a>
+      </aside>
+      <article>
+        <h1>OTA &amp; updates</h1>
+        <p>WraithLink uses the GrapheneOS Updater pointed at <code>https://ota.wraithlink.com</code>
+          (configurable at build time via <code>WL_OTA_URL</code>).</p>
+        <h2>Channels</h2>
+        <p>Release metadata files such as <code>tokay-stable</code> / <code>akita-stable</code> live on the
+          OTA host. Factory images for the web installer live under
+          <code>https://releases.wraithlink.com/&lt;build&gt;/</code>.</p>
+        <h2>Operator deploy</h2>
+        <pre><code>bash scripts/07-deploy-site.sh</code></pre>
+        <p>Publishes the site, copies the latest signed factory zip + OTA package, and updates
+          <code>install/release.json</code> (merges per-device entries).</p>
+        <h2>User side</h2>
+        <p>Settings → System → Update (or the Updater app). Updates install in the background with
+          A/B seamless reboot when ready. Never sideload random zips from third parties.</p>
+      </article>
+    </div>
+  </div>
+  <footer>WraithLink docs &middot; <a href="../index.html">Home</a></footer>
+</body>
+</html>

@@ -1,0 +1,66 @@
+# WraithLink central build configuration.
+# Copy to config/wraithlink.conf and edit. Sourced by scripts/*.sh.
+
+# ---- Branding ----
+WL_NAME="WraithLink"                 # product/display name
+WL_VENDOR="WraithLink"               # vendor/author string (cert CN, props)
+WL_DOMAIN="wraithlink.example"       # your domain (OTA + installer host)
+
+# ---- Device / source ----
+# Pixel codename to build. Pixel 9 = tokay, Pixel 9 Pro = caiman,
+# Pixel 8a = akita, Pixel 8 = shiba, Pixel 8 Pro = husky.
+WL_DEVICE="tokay"
+# GrapheneOS branch (dev) or a stable tag. Prefer a stable tag for real builds.
+WL_BRANCH="17"
+WL_MANIFEST_URL="https://github.com/GrapheneOS/platform_manifest.git"
+# Directory (absolute) where the AOSP/GrapheneOS source tree is synced.
+WL_SRC_DIR="${HOME}/wraithlink-src"
+# Parallel jobs for repo sync.
+WL_SYNC_JOBS="8"
+
+# ---- Signing ----
+# Where encrypted signing keys live (KEEP OFFLINE BACKUPS).
+WL_KEYS_DIR="${WL_SRC_DIR}/keys/${WL_DEVICE}"
+WL_CERT_CN="WraithLink"
+
+# ---- OTA / Updater ----
+# The Updater app is repointed here. MUST be your own server, never GrapheneOS's.
+WL_OTA_URL="https://ota.${WL_DOMAIN}"
+
+# ---- Network privacy defaults (Phase 3) ----
+# Default Private DNS (DoT) hostname baked into settings. User-overridable.
+WL_DEFAULT_DNS_HOST="dns.example-encrypted.net"
+# per-connection = fresh random MAC every connection (no persistent/real MAC).
+WL_MAC_RANDOMIZATION="per-connection"
+# Bundle dnscrypt-proxy config template only when true. v1 default false: there is
+# no binary/service wiring yet — do not advertise dnscrypt as shipping.
+WL_BUNDLE_DNSCRYPT="false"
+# Only rewrite GrapheneOS Apps repo URLs when you actually host an apps mirror.
+# Empty = leave apps.grapheneos.org (recommended until apps.${WL_DOMAIN} is live).
+WL_APPS_REPO_HOST=""
+
+# ---- X47 remote link (Phase 8) ----
+# Exclusive linking uses a Tor v3 onion service WITH client authorization.
+# This is the only supported transport for the "only the owner can link" model.
+WL_X47_TRANSPORT="onion"
+# NOTE: there is intentionally NO preset onion address. The desktop's onion and
+# all keys are generated locally and learned by the phone ONLY during QR pairing.
+# Shipping a fixed onion/keys would let strangers' phones reach your desktop.
+
+# ---- Decoy PIN / vault wipe (framework milestone; security-critical) ----
+# When true, scripts/04 applies the lock-screen patch: a PIN that unlocks the
+# owner profile normally while silently destroying WraithVault (+ other
+# secondaries) and advertises ro.wraithlink.decoy=1. Keep FALSE on lean/published
+# configs. For M2 use config/wraithlink-decoy.conf instead of flipping this in
+# place. GrapheneOS panic wipe stays available either way — decoy does not replace it.
+WL_ENABLE_DECOY_DURESS="false"
+
+# ---- Media privacy ----
+# When true (default), MediaProvider strips GPS/device/timestamp metadata from
+# images and videos as soon as they are indexed (camera, downloads, messaging).
+# Set false only if you need to keep original EXIF for a forensic/dev build.
+WL_ENABLE_MEDIA_PRIVACY="true"
+
+# ---- Build ----
+WL_BUILD_VARIANT="user"              # user (production) | userdebug (dev)
+WL_OFFICIAL_BUILD="true"             # include Updater app (requires WL_OTA_URL)

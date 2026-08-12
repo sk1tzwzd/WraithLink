@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs - Security model</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="../index.html#features">Features</a>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Start</div>
+        <a href="index.html">Overview</a>
+        <a href="install.html">Install</a>
+        <a href="devices.html">Devices</a>
+        <div class="group">Features</div>
+        <a href="features.html">Feature tour</a>
+        <a href="duress.html">Duress &amp; WraithVault</a>
+        <a href="network-privacy.html">Network privacy</a>
+        <a href="chat.html">WraithLink messenger</a>
+        <a href="x47-pairing.html">X47 pairing</a>
+        <div class="group">Reference</div>
+        <a href="usage.html">Daily use</a>
+        <a class="active" href="security.html">Security model</a>
+        <a href="faq.html">FAQ</a>
+      </aside>
+
+      <article>
+        <h1>Security model</h1>
+        <p>This page is the one to read before you trust WraithLink with anything that matters. It
+          describes what WraithLink actually defends against, how, and - just as important - where it
+          stops.</p>
+
+        <h2>Threats WraithLink is built for</h2>
+        <ul>
+          <li><strong>Theft of a powered-off or locked phone.</strong> Full-disk encryption keyed to
+            your lock credential, enforced by the secure element with attempt throttling. Standard,
+            and strong.</li>
+          <li><strong>Seizure where you can act.</strong> A panic credential destroys the device's
+            encryption keys outright. Because the keys are killed first, the data is unrecoverable
+            even if the process is interrupted a second later.</li>
+          <li><strong>Coercion to unlock (milestone 2).</strong> A decoy PIN that opens the everyday
+            phone while silently destroying WraithVault — separate from panic wipe. Lean published
+            images keep it off until hardware QA; it is coercion UI cover, not forensic deniability.</li>
+          <li><strong>Network surveillance.</strong> Optional Mullvad encrypted DNS from Setup,
+            GrapheneOS per-connection MAC randomization, and 2G disable guidance.</li>
+          <li><strong>Opportunistic physical access.</strong> USB data blocked while locked, ADB off
+            by default, auto-reboot back to a keys-evicted state after idle, auto-wipe after repeated
+            wrong attempts.</li>
+          <li><strong>Remote exploitation.</strong> The upstream exploit mitigations and hardened
+            memory allocator are preserved, the attack surface is trimmed, and heavy tooling is kept
+            off the phone entirely (see <a href="x47-pairing.html">X47 pairing</a>).</li>
+        </ul>
+
+        <h2>The ceiling, stated plainly</h2>
+        <div class="callout warn">
+          <span class="lbl">No forensic-grade deniability in software.</span> If an adversary images
+          your storage <em>before</em> you ever enter a PIN — the way a well-equipped lab or border
+          unit works — nothing you type afterwards undoes that copy. Use the panic wipe when you can
+          still act. WraithVault is a normal secondary user profile and is detectable; decoy PIN only
+          drops that profile after unlock — it does not claim UI hiding or deniable storage.
+        </div>
+
+        <h2>What we deliberately did not change</h2>
+        <p>WraithLink keeps verified boot, hardware attestation, and the upstream package identifiers
+          intact. Renaming internal package IDs or defeating attestation to look "less like GrapheneOS"
+          would break the WebView/browser wiring and, worse, weaken the very integrity guarantees that
+          make the duress feature meaningful. The rebrand is user-facing only.</p>
+
+        <h2>Trusting the build</h2>
+        <p>WraithLink is signed with its own release key and relocks the bootloader against it, so the
+          phone will refuse to boot a system image that isn't WraithLink's. Factory images published on
+          this site carry a SHA-256 checksum, and the web installer verifies it in your browser before
+          writing anything. Always check the checksum against the release.</p>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    WraithLink - derived from GrapheneOS and AOSP, not affiliated with either.
+    &middot; <a href="../index.html">Home</a> &middot; <a href="../install/index.html">Install</a>
+  </footer>
+</body>
+</html>

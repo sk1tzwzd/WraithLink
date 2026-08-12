@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs - Duress &amp; WraithVault</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="../index.html#features">Features</a>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Start</div>
+        <a href="index.html">Overview</a>
+        <a href="install.html">Install</a>
+        <a href="devices.html">Devices</a>
+        <div class="group">Features</div>
+        <a href="features.html">Feature tour</a>
+        <a class="active" href="duress.html">Duress &amp; WraithVault</a>
+        <a href="network-privacy.html">Network privacy</a>
+        <a href="chat.html">WraithLink messenger</a>
+        <a href="x47-pairing.html">X47 pairing</a>
+        <div class="group">Reference</div>
+        <a href="usage.html">Daily use</a>
+        <a href="security.html">Security model</a>
+        <a href="faq.html">FAQ</a>
+      </aside>
+
+      <article>
+        <h1>Duress &amp; WraithVault</h1>
+        <p>Three credentials, three jobs. Do not conflate them.</p>
+
+        <h2>Credentials</h2>
+        <table>
+          <tr><th>You enter</th><th>What happens</th></tr>
+          <tr><td>Your <strong>owner PIN</strong></td><td>Everyday phone opens. WraithVault untouched.</td></tr>
+          <tr><td>Your <strong>panic wipe</strong> password</td><td>GrapheneOS duress: encryption keys are destroyed
+            and the whole device is wiped — including WraithVault. Use when you can burn the phone.</td></tr>
+          <tr><td>Your <strong>decoy PIN</strong></td><td>Opens the everyday phone normally while
+            <em>silently destroying WraithVault</em> (and other secondary users). For coercion while
+            someone is watching. Requires a decoy-enabled build (<code>ro.wraithlink.decoy=1</code>).</td></tr>
+        </table>
+        <p>The decoy PIN is <strong>not</strong> a replacement for panic wipe. Keep both when you use
+          decoy builds. If a panic credential equals your owner credential, the owner one wins
+          (GrapheneOS rule).</p>
+
+        <h2>Decoy PIN status</h2>
+        <div class="callout">
+          <span class="lbl">Milestone 2.</span> Published installer images stay <strong>lean</strong>
+          (decoy off) until a dedicated decoy rebuild passes hardware QA. Decoy builds advertise
+          <code>ro.wraithlink.decoy=1</code>; Setup then shows the decoy step and
+          <strong>refuses</strong> to arm it until you confirm an off-phone vault backup.
+        </div>
+        <p>Honest ceiling: useful against coercion and casual inspection of the unlocked UI. It does
+          <em>not</em> undo a forensic image taken before unlock, and it is not “hidden” or deniable
+          storage — WraithVault is a normal secondary user.</p>
+
+        <h2>WraithVault</h2>
+        <p>WraithVault is a <strong>secondary Android user profile</strong> created from Setup — not
+          Android's "private space" (which can bypass VPN). Put sensitive apps there and give the
+          profile its own strong lock.</p>
+        <p>It is <em>not</em> hidden from the lock-screen profile switcher, quick settings, or
+          forensics. Treat it as a separate workspace you back up, not as deniable storage.</p>
+
+        <div class="callout">
+          <span class="lbl">Back up before you destroy.</span> On decoy builds, Setup requires tapping
+          <strong>I've backed up</strong> before a decoy PIN can be set. Back up to
+          <a href="x47-pairing.html">X47</a> or an encrypted USB-C drive — never keep the only copy
+          on the phone.
+        </div>
+
+        <h2>USB and backups</h2>
+        <p>WraithLink blocks USB data while the screen is locked, which defeats forensic bridges. It
+          does <em>not</em> block USB when unlocked, so your encrypted USB-C backup drive still mounts
+          normally.</p>
+
+        <h2>The honest limit</h2>
+        <div class="callout warn">
+          <span class="lbl">Not forensic-grade deniability.</span> Nothing on the phone undoes a copy
+          of storage taken before you unlock. For that threat, use the panic wipe. See the
+          <a href="security.html">security model</a>.
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    WraithLink - derived from GrapheneOS and AOSP, not affiliated with either.
+    &middot; <a href="../index.html">Home</a> &middot; <a href="../install/index.html">Install</a>
+  </footer>
+</body>
+</html>

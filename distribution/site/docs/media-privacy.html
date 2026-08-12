@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs — Media privacy</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Start</div>
+        <a href="index.html">Overview</a>
+        <a href="getting-started.html">Getting started</a>
+        <a href="install.html">Install</a>
+        <div class="group">Features</div>
+        <a href="features.html">Feature tour</a>
+        <a class="active" href="media-privacy.html">Media privacy</a>
+        <a href="network-privacy.html">Network privacy</a>
+        <div class="group">Reference</div>
+        <a href="security.html">Security model</a>
+        <a href="faq.html">FAQ</a>
+      </aside>
+      <article>
+        <h1>Media privacy</h1>
+        <p>When MediaProvider indexes an image or video (camera, download, message, USB copy),
+          WraithLink strips sensitive metadata by default.</p>
+        <h2>What is removed</h2>
+        <ul>
+          <li>GPS / location EXIF</li>
+          <li>Device make/model and serial-like tags</li>
+          <li>Capture timestamps (where applicable)</li>
+          <li>Common XMP location packets on supported formats</li>
+        </ul>
+        <h2>Control</h2>
+        <p>Settings.Secure <code>wraithlink_strip_media_metadata</code>: <code>1</code> = strip (default),
+          <code>0</code> = leave metadata intact. Setup enables the default on first boot.</p>
+        <h2>What GrapheneOS already does</h2>
+        <p>Camera can strip EXIF and disable geo tagging in its own settings. WraithLink’s strip
+          covers media that arrives from other apps too — not only the stock camera.</p>
+        <div class="callout warn">
+          <span class="lbl">Limit</span>
+          <p style="margin:8px 0 0;color:var(--muted)">Share-time PDF stripping and exotic containers
+            are not guaranteed. Re-check critical files before publishing.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+  <footer>WraithLink docs &middot; <a href="../index.html">Home</a></footer>
+</body>
+</html>

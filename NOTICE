@@ -1,0 +1,29 @@
+WraithLink
+Copyright 2026 WraithLink contributors
+
+This product is a derivative work built on top of the following projects, each
+retaining its own license and copyright. WraithLink is NOT affiliated with,
+endorsed by, or supported by any of them.
+
+- Android Open Source Project (AOSP)      Apache License 2.0
+- GrapheneOS                              MIT / Apache-2.0 (per-repo; see upstream)
+- Vanadium (Chromium fork)                BSD-style / Chromium licenses
+- dnscrypt-proxy                          ISC License
+- Mullvad VPN app                         GPLv3 (bundled unmodified; source available)
+- F-Droid                                 GPLv3 / AGPL (components vary)
+- Orbot / Tor                             Tor: 3-clause BSD; Orbot: various FOSS
+- Tor Browser (Mozilla + Tor)             MPL 2.0 / Tor licenses
+- libsodium                               ISC License
+- Noise Protocol Framework                public domain / CC0 (spec)
+
+Trademark notice: "GrapheneOS" is a trademark of its owners. WraithLink removes
+GrapheneOS branding as required for redistribution under a different name. "Google",
+"Pixel", and "Android" are trademarks of Google LLC; WraithLink is not affiliated
+with Google.
+
+Google Play and Google Mobile Services APKs are NOT redistributed by WraithLink.
+The sandboxed Google Play compatibility layer offers them for installation from
+Google at the user's request, consistent with GrapheneOS's approach.
+
+Full upstream license texts are retained within the synced source tree and within
+each bundled component. See docs/licensing.md for details.

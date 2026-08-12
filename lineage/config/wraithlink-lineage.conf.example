@@ -1,0 +1,31 @@
+# WraithLink Lineage build configuration.
+# Copy to lineage/config/wraithlink-lineage.conf and edit.
+
+WL_NAME="WraithLink Lineage"
+WL_VENDOR="WraithLink"
+WL_DOMAIN="wraithlink.com"
+
+# LineageOS branch (e.g. lineage-22.2, lineage-23.0).
+WL_LINEAGE_BRANCH="lineage-22.2"
+WL_MANIFEST_URL="https://github.com/LineageOS/android.git"
+
+# Where the Lineage source tree lives (keep separate from GrapheneOS src).
+WL_SRC_DIR="${HOME}/wraithlink-lineage-src"
+
+# Parallel repo sync jobs.
+WL_SYNC_JOBS="8"
+
+# Optional: restrict matrix to these codenames (space-separated).
+# Empty = use lineage/devices/official.txt (regenerated from upstream).
+WL_DEVICE_ALLOWLIST=""
+
+# Signing / release output
+WL_RELEASE_DIR="${HOME}/wraithlink-lineage-releases"
+WL_KEYS_DIR="${HOME}/wraithlink-lineage-keys"
+
+# Site publish root (on the build server).
+WL_SITE_LINEAGE_DIR="/srv/wraithlink-www/lineage"
+
+# Chat APK signing (reuse GrapheneOS chat keystore if you want same package trust).
+# WL_CHAT_KEYSTORE="${HOME}/wraithlink-src/keys/tokay/wraithlink-chat.jks"
+# WL_CHAT_KEY_PASSPHRASE=""

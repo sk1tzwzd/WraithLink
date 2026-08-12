@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Install WraithLink</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="../index.html#features">Features</a>
+    <a class="link" href="../docs/index.html">Docs</a>
+    <a class="cta" href="index.html">Install</a>
+  </nav>
+
+  <main>
+    <img class="page-logo" src="../assets/wraithlink-icon.png" alt="WraithLink" />
+    <h1 style="font-family:var(--font-display);text-transform:uppercase;letter-spacing:0.04em;color:var(--accent);text-align:center">Install</h1>
+    <p class="section-sub" id="release" style="text-align:center;margin-left:auto;margin-right:auto">Loading release information...</p>
+
+    <div class="callout warn">
+      <span class="lbl">This erases the device.</span> Installing wipes all data. Back up anything
+      you need first. Installation is only safe on the supported Pixel devices listed in the
+      <a href="../docs/install.html">install guide</a>.
+    </div>
+
+    <div class="callout">
+      <span class="lbl">Use www</span>
+      <p style="margin:8px 0 0;color:var(--muted)">Flash from
+        <a href="https://www.wraithlink.com/install/">https://www.wraithlink.com/install/</a>
+        (Pixel 9 = <code>tokay</code>, Pixel 8a = <code>akita</code>).
+        Point apex / <code>ota</code> / <code>releases</code> DNS at the build server for OTA and bare-domain links.</p>
+    </div>
+
+    <div class="card">
+      <h3>What's included</h3>
+      <p class="section-sub">Hardened GrapheneOS-based system, Setup wizard, media metadata strip,
+        F-Droid, and (when staged) WraithLink Messenger over Tor. Orbot / Tor Browser / Mullvad
+        install from F-Droid. Sandboxed Google Play is optional in Setup.</p>
+    </div>
+
+    <div class="card">
+      <h3>Before you start</h3>
+      <ol>
+        <li>Use a Chromium-based browser on a computer (Chrome, Edge, or Brave). WebUSB is required, and this page must be served over HTTPS.</li>
+        <li>On the phone, enable <strong>Developer options</strong>, then turn on <strong>OEM unlocking</strong> and <strong>USB debugging</strong>.</li>
+        <li>Connect the phone by a good-quality USB-C cable and reboot it into the bootloader (power off, then hold <em>Volume Down</em> while powering on).</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h3>Flash</h3>
+      <p class="section-sub">This unlocks the bootloader, flashes the WraithLink factory image, then
+        relocks against the WraithLink verified-boot key.</p>
+      <div class="btns" style="display:flex; gap:12px; flex-wrap:wrap;">
+        <button class="btn primary" id="connect">Connect device</button>
+        <button class="btn primary" id="flash" disabled>Flash WraithLink</button>
+        <button class="btn ghost" id="relock" disabled>Relock bootloader</button>
+      </div>
+      <div class="progress"><i id="bar"></i></div>
+      <div class="log" id="log">Waiting for device...</div>
+    </div>
+
+    <div class="card">
+      <h3>Prefer the command line?</h3>
+      <p class="section-sub">The <code>fastboot</code> CLI is the guaranteed method and does not
+        depend on your browser. Download the factory image + checksum from the release, verify it,
+        then:</p>
+<pre><code>sha256sum -c wraithlink-&lt;device&gt;-factory.zip.sha256
+# reboot the phone to the bootloader, then:
+fastboot flashing unlock          # confirm on the phone
+bootloader/flash-all.sh           # from inside the extracted factory image
+fastboot flashing lock            # confirm on the phone</code></pre>
+      <p class="section-sub">Full walk-through in the <a href="../docs/install.html">install guide</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    Runs entirely in your browser. WraithLink flashes only images signed with the WraithLink
+    release key - always verify the checksum shown above against the release.
+  </footer>
+
+  <script type="module" src="./installer.js"></script>
+</body>
+</html>

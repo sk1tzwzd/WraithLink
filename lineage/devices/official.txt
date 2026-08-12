@@ -1,0 +1,10 @@
+# Official LineageOS device codenames to attempt (one per line).
+# Regenerate with: bash lineage/scripts/refresh-device-list.sh
+# Start small; expand as the build queue allows. APK path covers the rest.
+bacon
+FP5
+guacamole
+lemonade
+marble
+sunny
+wayland

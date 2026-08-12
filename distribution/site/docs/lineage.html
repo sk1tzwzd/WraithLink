@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs — Lineage edition</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../lineage/index.html">Lineage site</a>
+  </nav>
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Reference</div>
+        <a class="active" href="lineage.html">Lineage edition</a>
+        <a href="security.html">Security model</a>
+        <a href="faq.html">FAQ</a>
+      </aside>
+      <article>
+        <h1>WraithLink Lineage</h1>
+        <div class="callout warn">
+          <span class="lbl">Weaker than Pixel WraithLink</span>
+          <p style="margin:8px 0 0;color:var(--muted)">Unlocked bootloaders on most phones.
+            Software wipe only — not Titan/SE key-destroy duress. Same messenger protocol.</p>
+        </div>
+        <p>Public hub: <a href="../lineage/index.html">/lineage/</a>. Messenger APK works on stock
+          Lineage for every official device; full ROM zips publish as CI builds succeed.</p>
+        <p>Build tooling lives in the repo under <code>lineage/</code>. Soft panic uses
+          <code>DevicePolicyManager.wipeData</code> after enabling device admin in Setup.</p>
+      </article>
+    </div>
+  </div>
+  <footer>WraithLink docs &middot; <a href="../index.html">Home</a></footer>
+</body>
+</html>

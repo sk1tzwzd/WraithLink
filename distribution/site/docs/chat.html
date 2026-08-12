@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs - Messenger</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="../index.html#features">Features</a>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Start</div>
+        <a href="index.html">Overview</a>
+        <a href="install.html">Install</a>
+        <a href="devices.html">Devices</a>
+        <div class="group">Features</div>
+        <a href="features.html">Feature tour</a>
+        <a href="duress.html">Duress &amp; WraithVault</a>
+        <a href="network-privacy.html">Network privacy</a>
+        <a class="active" href="chat.html">WraithLink messenger</a>
+        <a href="x47-pairing.html">X47 pairing</a>
+        <div class="group">Reference</div>
+        <a href="usage.html">Daily use</a>
+        <a href="security.html">Security model</a>
+        <a href="faq.html">FAQ</a>
+      </aside>
+
+      <article>
+        <h1>WraithLink messenger</h1>
+        <p>WraithLink ships with its own messenger, also called WraithLink. It is end-to-end
+          encrypted, peer-to-peer, verified before you can send a word, and it stores nothing anywhere
+          - there is no server to store it on.</p>
+
+        <div class="callout">
+          <span class="lbl">Download</span>
+          <p style="margin:8px 0 0;color:var(--muted)">Sideload on any Android 14+ phone:
+            <a href="../downloads/index.html">Messenger download</a>
+            · direct <a href="../downloads/WraithLinkChat.apk">APK</a>.</p>
+        </div>
+
+        <h2>No server, no account, no phone number</h2>
+        <p>Every install runs its own Tor v3 onion service to receive messages and dials peers through
+          the local Tor proxy. Your address is an onion address, not a phone number or a username tied
+          to an account. Because traffic rides Tor, neither peer learns the other's IP or location, and
+          there is no central point to subpoena, breach, or shut down.</p>
+
+        <h2>Mandatory verification (the "OTP")</h2>
+        <p>You cannot message a contact until you have verified them. When you add someone, both phones
+          compute the same short numeric code from your two identity keys (optionally salted with a
+          one-time invite passcode you share out-of-band). You compare the codes - read them aloud, or
+          check them in person - and confirm. If the codes don't match, someone is trying to sit in the
+          middle, and the app refuses to proceed. Nothing about this is stored; it is recomputed each
+          session.</p>
+
+        <h2>Disappearing by default</h2>
+        <p>Messages live only in the app's memory and disappear on a timer you set per conversation.
+          There is a view-once mode that burns a message the instant it's read, and a background
+          sweeper that purges anything past its lifetime even if you never open the chat. Locking the
+          phone, logging out, or a <a href="duress.html">duress</a> event wipes the whole in-memory
+          store immediately. Screenshots and screen recording are blocked.</p>
+
+        <h2>Encryption</h2>
+        <p>Your long-term Signal identity key is sealed under a StrongBox-backed AES key on Pixels
+          (TEE/software fallback elsewhere). Message encryption uses the audited Double Ratchet and
+          X3DH handshake from <code>libsignal</code> - WraithLink does not invent its own ciphers.
+          Contact exchange is QR-based; both sides must confirm a matching Short Authentication String
+          before any plaintext is accepted.</p>
+
+        <h2>Preinstalled, removable</h2>
+        <p>The messenger ships in the factory image as a normal system app (signed with a dedicated
+          app key, not the platform key). The first-boot wizard can open it; you can uninstall it from
+          Settings if you do not want it.</p>
+
+        <h2>"Blockchain", scoped honestly</h2>
+        <p>You asked for a blockchain messenger. Here's the honest engineering: putting messages on a
+          blockchain would make them <em>permanent and world-readable</em>, which is the exact opposite
+          of "nothing stored anywhere". So messages never touch a ledger. The only place the blockchain
+          idea appears is an optional, tamper-evident anchor that binds a human-readable handle to a
+          public key, purely to stop impersonation. It never carries message content or metadata, and
+          it's off by default - you can operate on onion address plus verified code alone.</p>
+
+        <h2>Tradeoffs</h2>
+        <ul>
+          <li>No history sync across devices - no logs means nothing to backfill.</li>
+          <li>No cloud backup of conversations.</li>
+          <li>Lose the device key and past messages are gone, by design.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    WraithLink - derived from GrapheneOS and AOSP, not affiliated with either.
+    &middot; <a href="../index.html">Home</a> &middot; <a href="../install/index.html">Install</a>
+  </footer>
+</body>
+</html>

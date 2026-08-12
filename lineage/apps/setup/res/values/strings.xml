@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WraithLink Setup</string>
+    <string name="panic_admin_description">Allows WraithLink Setup to perform a software factory reset (soft panic wipe). This is interruptible and is not a secure-element key destroy.</string>
+</resources>

@@ -1,0 +1,16 @@
+{
+  "published": true,
+  "version": "2026080701",
+  "devices": {
+    "tokay": {
+      "factory_zip": "https://www.wraithlink.com/releases/2026080701/tokay-factory-2026080701.zip",
+      "sha256": "7e5dd7e4e9cd396f9bb2acf8f5884e7a2467e79b41f56c24f1f3d6b02456997d",
+      "build": "2026080701"
+    },
+    "akita": {
+      "factory_zip": "https://www.wraithlink.com/releases/2026080701/akita-factory-2026080701.zip",
+      "sha256": "2144a3e7377c7f89a2e86a96e2e9b5e6a0219e8a3378b2ec0756a98f1a79f53b",
+      "build": "2026080701"
+    }
+  }
+}

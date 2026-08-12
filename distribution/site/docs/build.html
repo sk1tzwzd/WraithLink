@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WraithLink Docs — Build</title>
+  <link rel="icon" href="../assets/wraithlink-icon.png" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../index.html"><img src="../assets/wraithlink-icon.png" alt="" />WraithLink</a>
+    <span class="spacer"></span>
+    <a class="link" href="index.html">Docs</a>
+    <a class="cta" href="../install/index.html">Install</a>
+  </nav>
+  <div class="wrap">
+    <div class="docs">
+      <aside class="side">
+        <div class="group">Ops</div>
+        <a href="ota.html">OTA &amp; updates</a>
+        <a class="active" href="build.html">Build from source</a>
+        <a href="keys.html">Signing keys</a>
+        <div class="group">Reference</div>
+        <a href="faq.html">FAQ</a>
+      </aside>
+      <article>
+        <h1>Build from source</h1>
+        <p>This repository is the toolkit. GrapheneOS/AOSP is synced with <code>repo</code> during the build.</p>
+        <h2>Host requirements</h2>
+        <ul>
+          <li>x86_64 Linux (Debian 12 / Ubuntu 24.04+)</li>
+          <li>32 GiB RAM minimum (64 GiB+ recommended)</li>
+          <li>~250 GiB+ free disk for one device tree + out/</li>
+        </ul>
+        <h2>Pixel / GrapheneOS pipeline</h2>
+        <pre><code>cp config/wraithlink.conf.example config/wraithlink.conf
+# edit WL_DEVICE, WL_DOMAIN, paths…
+
+bash scripts/00-setup-build-env.sh
+bash scripts/01-sync-source.sh
+bash scripts/02-extract-vendor.sh
+bash scripts/03-gen-keys.sh
+bash scripts/04-apply-rebrand.sh
+bash scripts/05-build.sh
+bash scripts/06-generate-release.sh YYYYMMDDNN   # password= for decrypt-keys
+bash scripts/07-deploy-site.sh</code></pre>
+        <h2>Decoy milestone</h2>
+        <p>Use <code>config/wraithlink-decoy.conf</code> (<code>WL_ENABLE_DECOY_DURESS=true</code>),
+          then <code>scripts/decoy-preflight.sh</code> before signing. Hardware QA checklist in the
+          repo under <code>docs/duress.md</code>.</p>
+        <h2>Lineage edition</h2>
+        <p>Separate tree — see <a href="lineage.html">Lineage edition</a> and
+          <code>lineage/README.md</code> in the repo.</p>
+      </article>
+    </div>
+  </div>
+  <footer>WraithLink docs &middot; <a href="../index.html">Home</a></footer>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# WraithLink first-boot provisioning service (init).
+# Runs once after boot completes, as a oneshot, then disables itself via the
+# persist marker checked inside the runner. Installed to /system/etc/init/.
+
+service wraithlink_firstboot /system/bin/wraithlink-firstboot
+    class late_start
+    user system
+    group system shell inet
+    oneshot
+    disabled
+    seclabel u:r:wraithlink_firstboot:s0
+
+on property:sys.boot_completed=1 && property:persist.wraithlink.provisioned=""
+    start wraithlink_firstboot
