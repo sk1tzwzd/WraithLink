@@ -97,6 +97,10 @@ See [`docs/milestones.md`](docs/milestones.md).
 - **M1b:** messenger in image or first OTA
 - **M2:** decoy PIN — coercion unlock that drops WraithVault
 
+## Support
+
+[Buy me a coffee](https://www.buymeacoffee.com/sk1tzwzd)
+
 ## License
 
 Apache-2.0 for WraithLink-authored code ([`LICENSE`](LICENSE)). Upstream components retain their own licenses ([`NOTICE`](NOTICE)).
