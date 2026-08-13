@@ -25,20 +25,35 @@
     <div class="hero-inner">
       <p class="prompt">root@wraithlink:~# edition=lineage <span class="cursor"></span></p>
       <h1 class="brand-mark">Lineage</h1>
-      <p class="lede">Same messenger. Many more phones. Weaker OS security — unlocked bootloaders,
-        software wipe only. Prefer Pixel WraithLink when SE duress matters.</p>
+      <p class="lede">Wider device support with a weaker boot story. Prebuilt Lineage ROMs are no longer
+        hosted here — build from the public toolkit. The messenger APK still works on any Android 14+ phone.</p>
       <div class="btns">
-        <a class="btn primary" id="btn-messenger" href="../downloads/index.html">Messenger APK</a>
-        <a class="btn ghost" href="../docs/lineage.html">Security notes</a>
+        <a class="btn primary" href="https://github.com/sk1tzwzd/WraithLink">Build from GitHub</a>
+        <a class="btn ghost" href="../downloads/index.html">Messenger APK</a>
       </div>
     </div>
   </header>
 
   <main>
-    <h2 class="section-title">Devices</h2>
-    <p class="section-sub"><code>rom</code> = zip published. <code>building</code> = in progress.
-      <code>apk</code> = stock Lineage + messenger APK for now.</p>
-    <div id="device-list" class="grid"></div>
+    <h2 class="section-title">Self-host only</h2>
+    <p class="section-sub">Server capacity is reserved for Pixel WraithLink images and the messenger.
+      Lineage edition tooling lives in the repo under <code>lineage/</code> — sync, stage, brunch, and
+      publish on your own hardware.</p>
+
+    <div class="callout">
+      <span class="lbl">Quick start</span>
+      <pre style="margin:12px 0 0"><code>git clone https://github.com/sk1tzwzd/WraithLink.git
+cd WraithLink
+# see lineage/README.md
+./lineage/scripts/01-sync.sh
+./lineage/scripts/02-stage-apps.sh
+./lineage/scripts/03-build-device.sh</code></pre>
+    </div>
+
+    <h2 class="section-title">Security ceiling</h2>
+    <p class="section-sub">Unlocked bootloaders and software wipe only — not GrapheneOS SE key destroy.
+      Prefer the <a href="../index.html">Pixel edition</a> when that matters. Details in
+      <a href="../docs/lineage.html">Lineage docs</a>.</p>
   </main>
 
   <footer>
@@ -46,25 +61,5 @@
     &middot; <a href="../index.html">Pixel WraithLink</a>
     &middot; <a href="https://www.buymeacoffee.com/sk1tzwzd" rel="noopener noreferrer" target="_blank">Buy me a coffee</a>
   </footer>
-  <script>
-    fetch('devices.json').then(r => r.json()).then(data => {
-      const root = document.getElementById('device-list');
-      const devices = data.devices || {};
-      const keys = Object.keys(devices).sort();
-      root.innerHTML = keys.map(codename => {
-        const d = devices[codename];
-        const status = d.status || 'apk';
-        let action = status === 'rom' && d.zip
-          ? `<p style="margin-top:12px"><a class="btn primary" href="${d.zip}">Zip</a></p>
-             <p class="mono" style="font-size:11px;margin-top:8px;color:var(--dim)">${d.sha256 || ''}</p>`
-          : `<p style="margin-top:12px"><a class="btn ghost" href="${data.messenger_apk || 'downloads/WraithLinkChat.apk'}">APK</a></p>`;
-        return `<div class="card"><h3>${codename} <span class="pill">${status}</span></h3>
-          <p>${d.note || ''}</p>${action}</div>`;
-      }).join('') || '<p>No devices listed.</p>';
-      if (data.messenger_apk) document.getElementById('btn-messenger').href = data.messenger_apk;
-    }).catch(() => {
-      document.getElementById('device-list').innerHTML = '<p>Could not load devices.json.</p>';
-    });
-  </script>
 </body>
 </html>

@@ -28,14 +28,11 @@ Factory images and the WebUSB installer: [https://www.wraithlink.com/install/](h
 
 ## Lineage edition
 
-Weaker boot / verified-boot story than Pixel Graphene builds. Same messenger APK path; soft-panic via Setup (software wipe, not SE key destroy).
+Weaker boot / verified-boot story than Pixel Graphene builds. Soft-panic via Setup (software wipe, not SE key destroy).
 
-| Path | Status |
-|---|---|
-| Fairphone 5 (`FP5`) | Full unofficial ROM published on the site |
-| Other codenames | Stock Lineage + sideload messenger APK (see site `devices.json`) |
+**No prebuilt Lineage ROMs are hosted** on the live site or build server — use the tooling under [`lineage/`](lineage/) and build on your own machine. The [messenger APK](https://www.wraithlink.com/downloads/) still works on stock Lineage / any Android 14+.
 
-Docs and downloads: [https://www.wraithlink.com/lineage/](https://www.wraithlink.com/lineage/) · tooling under [`lineage/`](lineage/)
+Overview: [https://www.wraithlink.com/lineage/](https://www.wraithlink.com/lineage/)
 
 ## Messenger
 

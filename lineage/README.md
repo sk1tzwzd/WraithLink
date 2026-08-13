@@ -10,8 +10,9 @@ no custom AVB relock story. See [docs/security.md](docs/security.md).
 - **WraithLink messenger** (Tor P2P) — in every ROM build *and* as a standalone APK
 - Setup wizard — vault (secondary user), Mullvad DNS one-tap, soft panic wipe
 - F-Droid preinstalled on ROM builds
-- Coverage goal: every **official** Lineage device (full zip when CI builds it;
-  messenger + Setup APKs on stock Lineage otherwise)
+- Build on **your** hardware — official WraithLink hosting does not publish Lineage ROM zips
+  (server space is reserved for Pixel images + messenger). Messenger + Setup APKs still work
+  on stock Lineage.
 
 ## Layout
 

@@ -1,30 +1,7 @@
 {
   "edition": "lineage",
-  "messenger_apk": "downloads/WraithLinkChat.apk",
-  "devices": {
-    "FP5": {
-      "status": "building",
-      "note": "Fairphone 5 WraithLink Lineage zip is compiling on the build server. Messenger APK is available now."
-    },
-    "bacon": {
-      "status": "apk",
-      "note": "No WraithLink Lineage zip yet — install stock LineageOS, then the messenger APK."
-    },
-    "guacamole": {
-      "status": "apk",
-      "note": "No WraithLink Lineage zip yet — install stock LineageOS, then the messenger APK."
-    },
-    "lemonade": {
-      "status": "apk",
-      "note": "No WraithLink Lineage zip yet — install stock LineageOS, then the messenger APK."
-    },
-    "marble": {
-      "status": "apk",
-      "note": "No WraithLink Lineage zip yet — install stock LineageOS, then the messenger APK."
-    },
-    "sunny": {
-      "status": "apk",
-      "note": "No WraithLink Lineage zip yet — install stock LineageOS, then the messenger APK."
-    }
-  }
+  "hosted_roms": false,
+  "messenger_apk": "../downloads/WraithLinkChat.apk",
+  "build_from": "https://github.com/sk1tzwzd/WraithLink",
+  "note": "No Lineage ROM zips are published on this site. Build with lineage/ scripts from the GitHub toolkit. Use the messenger APK on stock Lineage or any Android 14+."
 }
