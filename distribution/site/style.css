@@ -233,6 +233,9 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 8px 28px 96px; }
   font-size: 0.78rem;
   margin: 0 0 14px;
   letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .hero .prompt .cursor {
   display: inline-block;
@@ -247,12 +250,13 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 8px 28px 96px; }
 .hero .brand-mark {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(2.6rem, 8vw, 4.6rem);
-  letter-spacing: 0.03em;
+  font-size: clamp(1.7rem, 8.4vw, 4.6rem);
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #fff;
   margin: 0 0 16px;
-  line-height: 0.98;
+  line-height: 1;
+  white-space: nowrap;
 }
 .hero .brand-mark::after {
   content: "";
@@ -313,12 +317,13 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 8px 28px 96px; }
 
 .section-title {
   font-family: var(--font-display);
-  font-size: 1.45rem;
+  font-size: clamp(1.05rem, 4.6vw, 1.45rem);
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   margin: 72px 0 10px;
   color: var(--fg);
+  white-space: nowrap;
 }
 .section-sub {
   color: var(--muted);
@@ -594,13 +599,14 @@ body > main > h1 {
       #050605 100%
     );
   }
-  .hero-inner { padding: 32px 18px 40px; }
+  .hero-inner { padding: 32px 16px 40px; }
   .hero .brand-mark {
-    font-size: clamp(2.2rem, 11vw, 3.2rem);
-    word-break: break-word;
+    font-size: clamp(1.55rem, 8vw, 2.4rem);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
   }
   .hero .lede {
-    font-size: 0.98rem;
+    font-size: 0.95rem;
     max-width: none;
     margin-bottom: 24px;
   }
@@ -610,7 +616,13 @@ body > main > h1 {
   }
   .hero .btns .btn { width: 100%; }
 
-  .section-title { margin-top: 48px; font-size: 1.25rem; }
+  .section-title {
+    margin-top: 48px;
+    font-size: clamp(1rem, 5vw, 1.2rem);
+    white-space: nowrap;
+  }
+  .feature-list .name { white-space: nowrap; }
+  .nav .brand { white-space: nowrap; }
   .section-sub { margin-bottom: 22px; }
 
   .feature-list li {
@@ -670,8 +682,11 @@ body > main > h1 {
 }
 
 @media (max-width: 420px) {
-  .nav .brand { font-size: 0.92rem; }
-  .hero .prompt { font-size: 0.7rem; }
+  .nav { padding: 10px 12px; }
+  .nav .brand { font-size: 0.88rem; letter-spacing: 0.04em; white-space: nowrap; }
+  .hero .prompt { font-size: 0.62rem; }
+  .hero .brand-mark { font-size: clamp(1.4rem, 7.6vw, 1.85rem); }
+  .docs article h1 { font-size: 1.25rem; }
   .page-logo { height: 52px; width: 52px; }
 }
 
